@@ -95,7 +95,7 @@
 
 - Windows (Windows 10/11)
 - Mac (Intel 또는 Apple Silicon M1/M2/M3)
-- Linux (Ubuntu, Fedora 등)
+- Linux (wsl, Ubuntu, Fedora 등)
 
 ---
 
@@ -110,11 +110,11 @@
 2. "System" 선택
 3. 스크롤해서 "About" 클릭
 4. 다음 정보가 보이는 스크린샷 촬영:
-   - Edition (예: Windows 11 Pro)
-   - Version
-   - OS Build
-   - Processor (CPU)
-   - Installed RAM
+- Edition (예: Windows 11 Pro)
+- Version
+- OS Build
+- Processor (CPU)
+- Installed RAM
 
 **스크린샷을 업로드해주세요.**
 

@@ -3,7 +3,21 @@
     "allow": [
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push)"
+      "Bash(git push)",
+      "Bash(mkdir:*)",
+      "Bash(python3 -m pip:*)",
+      "Bash(python -m pip:*)",
+      "Bash(/c/Users/audrm/AppData/Local/Programs/Python/Python313/python.exe -m pip:*)",
+      "Bash(python3:*)",
+      "Bash(where:*)",
+      "Bash(/c/Users/audrm/AppData/Local/Programs/Python/Python313/python.exe:*)",
+      "Bash(echo $env:PATH)",
+      "Bash(Test-Path \"C:\\\\Users\\\\audrm\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python313\\\\python.exe\")",
+      "Bash(echo:*)",
+      "Bash(dir \"%APPDATA%\\\\Code\\\\User\\\\globalStorage\")",
+      "Bash(dir:*)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\audrm\\\\.vscode\\\\extensions\\\\anthropic.claude-code-2.0.75-win32-x64\" -Force -Recurse)",
+      "Bash(Select-Object FullName, PSIsContainer)"
     ]
   }
 }
