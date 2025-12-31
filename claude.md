@@ -1,50 +1,116 @@
-## 지피터스 20기 프리랜서를 위한 Claude Code 템플릿
+# 🎯 gpters 20기 프리랜서를 위한 Claude Code 템플릿
 
-**목표:** 4주 만에 나만의 자동화 Skill 3개 이상 만들기
+**목표: 4주 만에 나만의 자동화 Skill 3개 이상 만들기**
 
 ---
 
-## 📋 User Profile
+## 🎨 이 템플릿은 왜 만들어졌을까?
 
-> `/setup-workspace` 명령어 실행 후 자동으로 업데이트됩니다.
+프리랜서의 **반복되는 일을 자동화해서 시간을 아끼도록** 하기 위해 만들었습니다.
 
-**Setup Status:** ⏳ Pending (아직 설정 전)
+```
+현재 상황:
+- 매일 같은 일을 반복하고 있어요
+- 이 일이 정말 싫고 시간을 낭비하고 있어요
+- 누군가 자동화해주면 좋겠는데...
 
-### Participant Information
+이 템플릿으로:
+- Claude Code가 당신의 상황을 파악해요
+- 당신에게 맞는 방법으로 자동화를 가르쳐줘요
+- 4주 안에 3개를 완성할 수 있어요
+```
 
-- **Name:** -
-- **Goal & Expected Outcome:** -
-- **AI Proficiency:** -
+---
 
-### System Information
+## ⚡ 빠른 시작 (3단계)
 
-- **OS:** -
-- **OS Version:** -
-- **Architecture:** -
-- **CPU:** -
-- **RAM:** -
+### 1단계: 초기 설정 (10분)
+```bash
+/setup-workspace
+```
+당신의 상황을 설명하면 Claude가 자동으로 이해합니다.
 
-### GPU Configuration
+### 2단계: 첫 번째 자동화 시작 (30분)
+```bash
+/clarify "매일 하는 반복 업무 또는 자동화 아이디어"
+```
+예: "매일 음성 파일을 정리하는데 1시간 걸려요"
 
-- **GPU:** -
-- **GPU Type:** -
-- **Driver Version:** -
+### 3단계: 4단계 프로세스 따라가기
+```
+/clarify → /design → /implement → /git-commit
+```
+각 단계는 1-2시간 정도 걸립니다.
 
-### Python Environment
+---
 
-- **Python Installed:** -
-- **Python Version:** -
-- **Installation Path:** -
-- **Virtual Environment:** -
+## 📋 당신의 정보 (Setup 후 자동 저장)
 
-### Project Progress
+### 참여자 정보
+- **이름**: -
+- **당신의 타입**: - (현재는 `/setup-workspace`에서 선택)
 
-- **Current Week:** Week 1
-- **Setup Date:** -
-- **Last Updated:** -
+### 첫 번째 도전 (4주 목표)
+- **하고 싶은 것**: -
+- **소요 기간**: 3-4일
+- **기대 효과**: -
 
-### Notes
+### 시스템 정보
+- **OS**: -
+- **Python**: -
+- **GPU**: -
 
-- 아직 설정이 완료되지 않았습니다.
-- `/setup-workspace` 명령어를 실행하여 정보를 수집하세요.
+---
 
+## 🎓 당신은 어떤 타입인가요?
+
+{이용자 답변}
+---
+
+## 📚 필요할 때 찾아보세요
+
+### 당신의 타입을 더 알고 싶으면
+→ `_systems/persona/` 폴더에 각 타입별 상세 정보
+
+### 어떤 자동화를 먼저 할지 모르겠으면
+→ `_systems/usecase/README.md` - 타입별 추천 자동화
+
+### 각 단계별 상세 가이드가 필요하면
+→ `_systems/userflow/README.md` - 단계별 실행 방법
+
+### 전체 시스템을 이해하고 싶으면
+→ `_systems/` 폴더의 README 문서들
+
+---
+
+## 💡 가장 중요한 3가지
+
+### 1. 당신의 상황만 말해주세요
+복잡한 설정은 없습니다. `/setup-workspace`에서 당신의 상황을 설명하면 Claude가 나머지를 합니다.
+
+### 2. 이 claude.md가 당신의 중심입니다
+- 현재 상황을 여기에 기록합니다
+- 진행 상황을 여기서 확인합니다
+- 다음 할 일을 여기서 봅니다
+
+### 3. 각 명령어는 자동으로 당신을 도와줍니다
+- `/clarify` - 당신의 상황을 이해합니다
+- `/design` - 자동화 방법을 설계합니다
+- `/implement` - 코드를 만들어줍니다
+- `/git-commit` - 배포합니다
+
+---
+
+## ✅ 지금 바로 시작하세요
+
+아직 설정하지 않았으면:
+```bash
+/setup-workspace
+```
+
+이미 설정했으면:
+```bash
+/clarify "당신의 반복 업무를 자유롭게 설명"
+```
+
+혼자가 아닙니다. Claude가 함께합니다. 🚀

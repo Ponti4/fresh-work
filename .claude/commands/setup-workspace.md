@@ -7,9 +7,12 @@
 ## 🎯 목표
 
 이 명령어는 다음을 진행합니다:
-1. **참여자 정보 수집** (이름, 목표, 숙련도)
-2. **시스템 환경 파악** (OS, Python, GPU)
-3. **claude.md에 자동 저장** (메모리 문서화)
+1. **당신의 상황 파악** (직업, 반복 업무, 목표) → Persona 자동 추론
+2. **Memory 자동 생성** (Persona 정보 + 사용자 정보)
+3. **시스템 환경 파악** (OS, Python, GPU)
+4. **claude.md에 자동 저장** (메모리 문서화)
+
+**중요: Persona 문서는 따로 관리하지 않습니다. Memory(JSON)로만 관리되며, 백그라운드에서 자동 업데이트됩니다.**
 
 ---
 
@@ -48,40 +51,85 @@
 
 ---
 
-### Step 3: 원하는 목표 & 기대하는 성과
+### Step 3: 당신의 상황은? (Persona 추론을 위한 질의)
 
-**4주 후 어떤 결과물을 기대하나요?**
+**다음 4가지를 자유롭게 설명해주세요. (이를 바탕으로 Claude가 당신에게 가장 적합한 경로를 설계합니다)**
 
-자유롭게 작성해주세요:
+#### 3-1. 현재 상황 & 직업
 
-**예시:**
-- "음성 파일을 텍스트로 자동 변환하는 스크립트 만들기"
-- "일일 업무 자동 정리 시스템 구축"
-- "데이터 수집 및 분석 자동화 도구 개발"
-- "API 연동 자동화 Skill 3개 만들기"
+```
+"지금 뭐하고 계세요?"
+
+예시:
+- "마케팅 프리랜서로 일하고 있어요"
+- "대학교 다니면서 취업 준비 중입니다"
+- "개발자로 일하고 있는데, 부수입을 원해요"
+- "일일 업무가 너무 많아서 시간을 절약하고 싶어요"
+```
+
+#### 3-2. 반복되는 업무
+
+```
+"주로 어떤 작업을 반복하세요?"
+
+예시:
+- "매일 미팅 음성 파일을 정리해야 해요"
+- "SNS 댓글/좋아요 데이터를 손으로 정리하고 있어요"
+- "고객 피드백을 이메일로 받아서 분류해야 해요"
+- "매월 엑셀로 리포트를 만드는데 시간이 너무 걸려요"
+```
+
+#### 3-3. 가장 불편한 점
+
+```
+"그 중 가장 불편한 게 뭐예요?"
+
+예시:
+- "시간이 너무 오래 걸려요 (주 10시간 이상)"
+- "정확도가 낮아서 자꾸 확인해야 해요"
+- "포트폴리오가 약해서 취업이 안 돼요"
+- "확장성이 없어서 데이터가 많아질수록 관리가 힘들어요"
+```
+
+#### 3-4. 기술 경험 & 4주 목표
+
+```
+"기술 경험은 어느 정도고, 4주 후 어떤 상태가 되길 원해요?"
+
+예시:
+- "코딩은 못 하는데, 3개 반복 업무를 자동화하고 싶어요"
+- "Python 기초는 알지만, 실무는 처음이에요. 데이터 자동화 도구를 만들고 싶어요"
+- "풀스택 개발자입니다. 판매 가능한 자동화 도구 3개를 만들고 싶어요"
+- "마케팅 배경이라 데이터는 아는데, 코딩은 안 배웠어요. 포트폴리오 3개를 만들고 싶어요"
+```
 
 ---
 
-### Step 4: AI 숙련도 선택
+### Step 4: 당신의 Persona 확인
 
-**현재 Claude Code와 자동화에 대한 숙련도는 어느 정도인가요?**
+**분석 중입니다... 🤖**
 
-다음 중 하나를 선택하세요:
+당신의 답변을 바탕으로 분석했습니다:
 
-1. **클로드 코드 및 자동화 입문자**
-   - Claude Code를 처음 사용합니다
-   - 자동화/Skill이 무엇인지 모릅니다
-   - Python도 처음 배우는 중입니다
+```
+당신은 "Lee" 타입 같습니다!
 
-2. **클로드 코드 사용만 할 수 있고 나머지는 모름**
-   - Claude Code의 기본 사용법은 알고 있습니다
-   - 하지만 Skill, 자동화 등은 처음입니다
-   - Python 경험이 거의 없습니다
+📌 Lee - 마케팅/데이터 중심
 
-3. **클로드 코드 숙련자**
-   - Claude Code를 잘 사용하고 있습니다
-   - Skill 개발 경험이 있습니다
-   - Python을 어느 정도 할 수 있습니다
+특징:
+- 직업: 마케팅/성장 해킹 프리랜서
+- 목표: 데이터 수집 & 분석 자동화
+- 핵심: "데이터 정확성과 확장성"
+
+추천 첫 도전:
+🔴 SNS 게시물 데이터 자동 수집 (주 10시간 절약)
+```
+
+**이게 맞나요?**
+
+1. ✅ **네, 맞아요!** → 다음으로 진행
+2. ❌ **아니에요, 다시 선택하고 싶어요** → 4가지 Persona 목록 제시
+3. ❓ **다른 타입들도 보고 싶어요** → 전체 4가지 Persona 상세 설명
 
 ---
 
@@ -257,49 +305,79 @@ README.md에는 다음 내용이 포함되어 있습니다:
 
 ---
 
-### Step 12: claude.md에 자동 저장
+### Step 12: Memory 및 CLAUDE.md 자동 생성
 
-모든 정보가 확인되면 다음을 수행합니다:
+모든 정보가 확인되면 다음을 자동으로 수행합니다:
 
-1. **claude.md 파일 업데이트**
+#### 1. Memory 자동 생성
+```
+✅ Memory 저장 중입니다...
 
-   예시:
-   ```markdown
-   ## 📋 User Profile
+.claude/memory/
+└── user-lee-kim-chul-soo.json
+    {
+      "name": "김철수",
+      "persona": "Lee",
+      "job": "마케팅 프리랜서",
+      "repeated_tasks": [
+        "SNS 데이터 수집",
+        "고객 피드백 분석"
+      ],
+      "main_pain": "시간이 너무 오래 걸림 + 정확도 문제",
+      "tech_level": "Python 기초 가능",
+      "first_challenge": "SNS 게시물 데이터 자동 수집",
+      "created_at": "2025-12-31T10:30:00Z",
+      "updated_at": "2025-12-31T10:30:00Z"
+    }
 
-   **Setup Status:** ✅ Complete
+✅ Memory 저장 완료!
+```
 
-   ### Participant Information
-   - **Name:** 김철수 (또는 닉네임)
-   - **Goal & Expected Outcome:**
-     - "음성 파일을 텍스트로 자동 변환하는 스크립트 만들기"
-   - **AI Proficiency:** 클로드 코드 및 자동화 입문자
+**특징:**
+- Persona 문서는 따로 생성되지 않습니다
+- 모든 Persona 정보는 Memory(JSON)에만 저장됩니다
+- `/clarify` 실행 시 이 Memory가 자동으로 로드됩니다
+- 필요시 `.claude/memory/` 폴더에서 JSON을 직접 수정할 수 있습니다
 
-   ### System Information
-   - **OS:** Windows 11 Pro
-   - **OS Version:** 23H2
-   - **Architecture:** x64
-   - **CPU:** Intel Core i9-13900K
-   - **RAM:** 32GB
+#### 2. CLAUDE.md 파일 업데이트
 
-   ### GPU Configuration
-   - **GPU:** NVIDIA RTX 4090
-   - **GPU Type:** nvidia_cuda
-   - **Driver Version:** 550.40
+```markdown
+## 📋 User Profile
 
-   ### Python Environment
-   - **Python Installed:** ✅ Yes
-   - **Python Version:** 3.11.5
-   - **Installation Path:** C:\Users\[username]\AppData\Local\Programs\Python\Python311
-   - **Virtual Environment:** Not yet
+**Setup Status:** ✅ Complete
 
-   ### Project Progress
-   - **Current Week:** Week 1
-   - **Setup Date:** 2025-12-27
-   - **Last Updated:** 2025-12-27
-   ```
+### Participant Information
+- **Name:** 김철수
+- **Persona:** Lee (마케팅/데이터 중심)
+  - Memory: .claude/memory/user-lee-kim-chul-soo.json
+- **Goal & Expected Outcome:** 데이터 자동화 (SNS 수집 & 분석)
 
-2. **파일 저장 완료**
+### First Challenge (Week 1-2)
+- **Title:** SNS 게시물 데이터 자동 수집
+- **Expected Duration:** 3-4일
+- **Expected Impact:** 주 10시간 절약
+
+### System Information
+- **OS:** Windows 11 Pro
+- **CPU:** Intel Core i7-12700K
+- **RAM:** 16GB
+- **Python:** 3.11.5 ✅
+- **GPU:** NVIDIA RTX 3080
+
+### Project Progress
+- **Current Week:** Week 1
+- **Setup Date:** 2025-12-31
+- **Last Updated:** 2025-12-31
+
+### Next Steps
+1. `/clarify "인스타그램 팔로워들의 댓글을 매일 수작업으로 정리하는데 2시간 걸려"`
+2. 명확화 문서 생성 (자동)
+3. `/design` → 설계 문서 생성
+4. `/implement` → 코드 작성
+5. `/git-commit` → 배포
+```
+
+✅ CLAUDE.md 저장 완료!
 
 ---
 
@@ -307,25 +385,66 @@ README.md에는 다음 내용이 포함되어 있습니다:
 
 설정이 완료되었습니다! 축하합니다! 🎊
 
-이제 `claude.md`에 당신의 모든 정보가 저장되었습니다.
-이후 Claude Code와 함께 작업할 때 이 정보를 자동으로 참고합니다.
+이제 당신의 모든 정보가 자동으로 저장되었습니다:
 
-### 다음 단계:
+```
+✅ Memory: .claude/memory/user-lee-kim-chul-soo.json
+✅ CLAUDE.md: Persona + 목표 정보 저장
+✅ 다음 명령어 준비 완료
+```
 
-**Week 1: 나만의 데이터 만들고 문제 발견하기**
+### 🚀 지금 바로 시작하세요:
 
-1. **README.md 읽기** (5분)
-   - 프로젝트 전체 개요 파악
+**Step 1: 문제 명확화 (30분)**
 
-2. **Week 1 가이드 확인** (10분)
-   - 1주차 학습 내용 확인
+```bash
+/clarify "인스타그램 팔로워들의 댓글을 매일 수작업으로 정리하는데 2시간 걸려"
+```
 
-3. **자동화 아이디어 정리** (30분)
-   - 반복되는 업무 3가지 적기
-   - 자동화하고 싶은 것 1개 선정
+이 명령어를 실행하면:
+1. 당신의 Memory가 자동으로 로드됨
+2. 입력한 내용이 분석됨
+3. 명확화 문서가 자동 생성됨
+4. Memory와 CLAUDE.md가 자동 업데이트됨
 
-4. **예제 Skill 살펴보기** (15분)
-   - 기존 Skill 분석
+**Step 2: 자동화 설계 (1시간)**
+
+```bash
+/design
+```
+
+**Step 3: 구현 (2-3시간)**
+
+```bash
+/implement
+```
+
+**Step 4: 배포 (1시간)**
+
+```bash
+/git-commit
+```
+
+---
+
+### 📝 Memory 수정하기 (필요시)
+
+당신의 정보를 수정하고 싶으면:
+
+```bash
+.claude/memory/user-lee-kim-chul-soo.json 파일을 열어서 수정
+```
+
+예:
+- Persona 변경
+- 목표 변경
+- 반복 업무 추가/삭제
+
+### 💡 자동 업데이트
+
+- `/clarify` 실행 후 Usecase 생성 시 자동으로 Memory 업데이트
+- `/design` → `/implement` 단계별로 Progress 자동 추적
+- CLAUDE.md는 항상 최신 상태 유지
 
 ---
 
