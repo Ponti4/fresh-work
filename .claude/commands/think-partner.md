@@ -1,7 +1,47 @@
+---
+name: think-partner
+description: 본질 논의 및 방향성 정의. 자동화로 확보된 자유 속에서 진정한 목표를 찾는 대화형 커맨드
+reference-docs:
+  auto-load-step-1:
+    - path: claude.md
+      purpose: "프로필, 목표, 현재 상황"
+    - path: docs/_clarify/
+      pattern: "clarify_*.md"
+      limit: 3
+      sort: "date_desc"
+      purpose: "자동화 패턴 분석"
+    - path: docs/_devlog/
+      pattern: "devlog_*.md"
+      limit: 3
+      sort: "date_desc"
+      purpose: "진행 기록 및 확보된 자유"
+    - path: docs/_think-partner/
+      pattern: "think_*.md"
+      limit: 2
+      sort: "date_desc"
+      purpose: "이전 논의 기록"
+
+  dynamic-load-references:
+    - name: "direction-options"
+      path: ".claude/reference/think-partner/direction-options.md"
+      when: "사용자 답변 분석 후 방향성 설명"
+      reason: "각 방향의 구체적 예시와 질문 가이드"
+
+    - name: "question-flow"
+      path: ".claude/reference/think-partner/question-flow.md"
+      when: "Step 4+ 심화 질문 진행 중"
+      reason: "각 방향별 심화 질문 패턴 참고"
+
+    - name: "routing-rules"
+      path: ".claude/reference/think-partner/routing-rules.md"
+      when: "최종 문서화 시 누적 패턴 분석"
+      reason: "이전 논의와 현재 상황 연결"
+---
+
 # Think Partner - 본질 논의 및 방향성 정의
 
 당신의 자동화들을 통해 확보된 자유 속에서,
-정말 집중하고 싶은 것이 무엇인지 
+정말 집중하고 싶은 것이 무엇인지
 함께 생각하는 커맨드입니다.
 
 **특징**: 관찰과 대화로 step 을 one-by-one 형식으로 진행
@@ -204,8 +244,6 @@ docs/_think-partner/think-YYYYMMDD-{사용자가_정의한_제목}.md
 
 ## 💡 사용 시점
 
-- 자동화 1개 완료 후 (1주차)
-- 자동화 2-3개 완료 후 (2주차)
 - 필요할 때마다 (자유가 생길 때마다)
 
 **중요:** "3개 완료했을 때"만 하는 게 아니라,
@@ -213,10 +251,10 @@ docs/_think-partner/think-YYYYMMDD-{사용자가_정의한_제목}.md
 
 ---
 
-## 📚 관련 문서 (**위키링크 작성**)
+## 📚 참고 자료 (동적 로드됨)
 
-- **claude.md**: 프로필 및 목표
-- **docs/_clarify/**: 각 자동화의 의도
-- **docs/_devlog/**: 진행 기록
-- **docs/_think-partner/**: 본질 논의 기록 (누적)
+참고 자료는 사용자 맥락에 따라 자동으로 로드됩니다:
+- **.claude/reference/think-partner/direction-options.md** - 5가지 방향성 선택지 상세 설명 및 예시
+- **.claude/reference/think-partner/question-flow.md** - Step별 질문 흐름 및 각 방향별 심화 질문
+- **.claude/reference/think-partner/routing-rules.md** - 문서 라우팅 규칙 및 누적 분석 가이드
 
