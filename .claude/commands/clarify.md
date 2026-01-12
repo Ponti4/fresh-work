@@ -1,6 +1,5 @@
 ---
 description: 자동화 요구사항으로 명확화하는 대화형 명령어.
-allowed-tools: Skill
 argument-hint: <반복 업무 설명>
 ---
 
@@ -60,16 +59,18 @@ argument-hint: <반복 업무 설명>
 
 ---
 
-## 📚 상세 가이드
+## 📚 상세 가이드 (동적 로딩)
 
-이 명령어는 다음 Skill을 사용합니다:
-→ **clarify-automations Skill**
+필요시 다음 참고 문서들을 로딩할 수 있습니다:
+- **10-clarify-path.md**: Clarify 프로세스 전체 맥락
+- **10.1-discomfort-detection.md**: 불편함 감지 방법론
+- **10.3-task-clarification.md**: Task 명확화 기법
+- **10.5-automation-architecture-design.md**: 자동화 아키텍처 설계
+- **10.6-implementation-rules.md**: 구현 규칙 및 기준
+- **question-flow.md**: 각 질문별 상세 가이드
+- **output-template.md**: Task 정의서 샘플
 
-Skill 내부의 상세 가이드:
-- 각 질문의 의미와 해석
-- 월 소요시간 자동 계산
-- Task 정의서 형식
-- 자동화 ROI 판단 기준
+💡 **로딩 방식**: 진행 중 필요한 문맥이 있으면 해당 문서를 불러옵니다.
 
 ---
 
@@ -84,6 +85,5 @@ Skill 내부의 상세 가이드:
 
 ## ❓ 궁금한 점?
 
-`clarify-automations` Skill의 references 문서를 참조하세요:
-- **question-flow.md**: 각 질문별 상세 가이드
-- **output-template.md**: Task 정의서 샘플
+`.claude/reference/clarify/` 폴더의 문서들을 참조하세요.
+필요시 Claude가 자동으로 해당 맥락을 로딩합니다.
