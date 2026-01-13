@@ -1,3 +1,12 @@
+---
+name: slash-commands
+description: Control Claude's behavior during an interactive session with slash commands
+context: none
+agent: none
+hooks: none
+allowed-tools: none
+---
+
 # Slash commands
 
 > Control Claude's behavior during an interactive session with slash commands.

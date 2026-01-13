@@ -1,3 +1,12 @@
+---
+name: bash-terminal-guide
+description: gpters 20기 프리랜서를 위한 Terminal/Bash 기초 완전 초보자 가이드
+context: none
+agent: none
+hooks: none
+allowed-tools: none
+---
+
 # Terminal/Bash 기초 가이드
 
 > **gpters 20기 프리랜서를 위한 완전 초보자 가이드**

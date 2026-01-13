@@ -33,7 +33,16 @@
       "Bash(git -C \"C:\\\\test\\\\duwls-workspace\\\\gpters-20th-templates\" log --oneline -3)",
       "Skill(clarify)",
       "Bash(pip show:*)",
-      "Bash(dir /s \"C:\\\\test\\\\duwls-workspace\\\\gpters-20th-templates\\\\.claude\\\\skills\\\\gpters-scraper\")"
+      "Bash(dir /s \"C:\\\\test\\\\duwls-workspace\\\\gpters-20th-templates\\\\.claude\\\\skills\\\\gpters-scraper\")",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nrefactor: 프로젝트 구조 재정리 및 문서 체계 개선\n\n## 변경 사항\n\n### 폴더 구조 정리\n- docs/ 재조직: wiki/, notes/, prompts/, plan/ 카테고리 분리\n- prompts/ → docs/prompts/ \\(중앙화\\)\n- _systems 정리: 01-devlog 제거, _study 신규 추가\n- _scripts 신규 폴더: devlog, gpters_scraper 스크립트 통합\n\n### Commands & Skills\n- ai-case-writer.md, wiki.md 신규 추가\n- gpters-scraper skill 신규 추가 \\(references + scripts\\)\n- setup-workspace.md, think-partner.md 개선\n\n### 문서화\n- README.md 간결화 \\(4주 목표 명확화\\)\n- settings.local.json 권한 설정 업데이트\n- docs/notes: 실제 작업 기록 통합\n\n### 제거 대상\n- 중복된 시스템 문서 \\(CLARIFY-ENHANCEMENT-PLAN, FEATURE-MAPPING 등\\)\n- 페르소나별 개별 문서 \\(01-kim-practical 등\\)\n\n## 효과\n- 신규 유저: README → setup-workspace로 빠른 진입\n- 작업 추적: docs/notes/ + devlog 스크립트\n- 문서 검색성: 카테고리별 정리로 개선\n- 유지보수: 중복 제거로 일관성 향상\n\n🤖 Generated with Claude Code\nCo-Authored-By: Claude Haiku 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(claude plugin install:*)",
+      "Skill(subagent-creator)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:www.reddit.com)",
+      "WebFetch(domain:www.warp.dev)",
+      "WebSearch",
+      "Bash(tree:*)",
+      "Bash(git -C /mnt/c/test/duwls-workspace/gpters-20th-templates log --oneline)"
     ]
   },
   "spinnerTipsEnabled": false

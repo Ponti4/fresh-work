@@ -1,3 +1,12 @@
+---
+name: sub-agent
+description: Create and use specialized AI subagents in Claude Code for task-specific workflows and improved context management
+context: none
+agent: none
+hooks: none
+allowed-tools: none
+---
+
 # Subagents
 
 > Create and use specialized AI subagents in Claude Code for task-specific workflows and improved context management.

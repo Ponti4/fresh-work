@@ -1,3 +1,12 @@
+---
+name: python-setup-guide
+description: gpters 20기 프리랜서를 위한 Python 설치 및 환경 설정 완전 초보자 가이드
+context: none
+agent: none
+hooks: none
+allowed-tools: none
+---
+
 # Python 설치 및 환경 설정 가이드
 
 > **gpters 20기 프리랜서를 위한 완전 초보자 가이드**

@@ -1,3 +1,12 @@
+---
+name: git-setup-and-usage
+description: gpters 20기 프리랜서를 위한 Git 설치 및 사용 완전 초보자 가이드
+context: none
+agent: none
+hooks: none
+allowed-tools: none
+---
+
 # Git 설치 및 사용 가이드
 
 > **gpters 20기 프리랜서를 위한 완전 초보자 가이드**

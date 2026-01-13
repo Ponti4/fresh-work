@@ -1,3 +1,12 @@
+---
+name: hooks
+description: Claude Code hooks를 사용하여 CLI 동작을 커스터마이징하고 확장하는 방법
+context: none
+agent: none
+hooks: none
+allowed-tools: none
+---
+
 # Get started with Claude Code hooks
 
 > Learn how to customize and extend Claude Code's behavior by registering shell commands
