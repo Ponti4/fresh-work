@@ -1,11 +1,11 @@
 ---
-name: gpters-scraper
-description: 지피터스(gpters.org) 멤버 프로필에서 게시물을 스크래핑하여 Markdown으로 저장. "지피터스 게시물 수집", "gpters 스크랩", "editor_소연 게시물", "프로필 크롤링" 등을 언급하면 자동 실행. Selenium 기반 동적 페이지 수집.
+name: fresh-work-scraper
+description: 온라인 채용 플랫폼에서 구인 공고를 크롤링하여 JSON으로 저장. "구인 공고 수집", "채용 정보 담기", "일자리 검색" 등을 언급하면 자동 실행. Selenium 기반 동적 페이지 수집.
 ---
 
-# gpters Scraper
+# Fresh Work Scraper
 
-지피터스 멤버 프로필에서 게시물을 자동 수집하여 로컬 Markdown 파일로 저장합니다.
+여러 채용 플랫폼에서 구인 공고를 자동 수집하여 로컬 JSON 파일로 저장합니다.
 
 ## 사전 요구사항
 
@@ -28,36 +28,39 @@ python -c "import bs4; print('BeautifulSoup 설치됨')"
 
 ## 사용 방법
 
-### 기본 실행 (최근 10개 게시물)
+### 기본 실행 (알바몬 최근 50개 공고)
 
 ```bash
-python scripts/scrape_posts.py --profile-url "https://www.gpters.org/member/WZlPiwwnpW"
+python scripts/scrape_jobs.py --source "albamon"
 ```
 
 ### 추가 옵션
 
 ```bash
-# 최근 20개 게시물 수집
-python scripts/scrape_posts.py --profile-url "URL" --max-results 20
+# 사람인에서 수집
+python scripts/scrape_jobs.py --source "saramin"
+
+# 여러 소스에서 수집
+python scripts/scrape_jobs.py --source "all"
 
 # 헤드리스 모드 (백그라운드 실행)
-python scripts/scrape_posts.py --profile-url "URL" --headless
+python scripts/scrape_jobs.py --source "albamon" --headless
 
-# 중복 파일 덮어쓰기
-python scripts/scrape_posts.py --profile-url "URL" --no-skip
+# 검색어 필터링 (예: 원격, 단기)
+python scripts/scrape_jobs.py --source "albamon" --keywords "원격,단기"
 
 # 출력 경로 변경
-python scripts/scrape_posts.py --profile-url "URL" --output-dir "내_경로/"
+python scripts/scrape_jobs.py --source "albamon" --output-dir "docs/jobs/"
 ```
 
 ---
 
 ## 옵션 설명
-
-| 옵션 | 설명 | 기본값 |
-|------|------|--------|
-| `--profile-url` | 프로필 URL (필수) | - |
-| `--max-results` | 최대 수집 개수 | 10 |
+source` | 채용 플랫폼 (albamon, saramin, all) | albamon |
+| `--keywords` | 검색 키워드 (쌍표 구분) | - |
+| `--output-dir` | 저장 디렉토리 | `docs/jobs/` |
+| `--headless` | 헤드리스 모드 (브라우저 숨김) | False |
+| `--max-pages` | 최대 페이지 수 | 5
 | `--output-dir` | 저장 디렉토리 | `docs/notes/gpters_editor_soyeon/` |
 | `--headless` | 헤드리스 모드 (브라우저 숨김) | False |
 | `--no-skip` | 중복 파일 덮어쓰기 | False (중복 건너뜀) |
@@ -68,46 +71,44 @@ python scripts/scrape_posts.py --profile-url "URL" --output-dir "내_경로/"
 
 ### 저장 경로
 ```
-docs/notes/gpters_editor_soyeon/
-├── 20260106_Claude_Code_자동화.md
-├── 20250105_GPT_활용_가이드.md
-└── ...
+docs/jobs/
+├── albamon_20260121.json
+├── saramin_20260121.json
+└── all_jobs_20260121.json
 ```
 
-### Markdown 파일 예시
+### JSON 파일 예시
 
-```markdown
-# Claude Code로 업무 자동화 시작하기
-
-- **작성일**: 2025-01-06
-- **URL**: [https://www.gpters.org/post/abc123](https://www.gpters.org/post/abc123)
-
-## 요약
-Claude Code를 활용하여 반복적인 업무를 자동화하는 방법에 대해 설명합니다.
-
----
-
-**수집 일시**: 2025-01-06 14:30:15
+```json
+{
+  "source": "albamon",
+  "collected_at": "2025-01-21T14:30:15",
+  "total_jobs": 42,
+  "jobs": [
+    {
+      "title": "데이터 입력 및 정리 (재택 가능)",
+      "company": "ABC 회사",
+      "url": "https://www.albamon.com/job/123456",
+      "salary": "시급 12,000원",
+      "location": "서울 강남",
+      "work_type": "단기",
+      "remote_available": true,
+      "flexible_hours": true
+    }
+  ]
+}
 ```
 
 ---
 
 ## 실행 결과
-
-### 성공 시 JSON 출력
-
-```json
-{
-  "status": "success",
-  "profile_url": "https://www.gpters.org/member/WZlPiwwnpW",
-  "collected_at": "2025-01-06T14:30:15",
-  "collected": 10,
-  "saved": 8,
-  "skipped": 2,
-  "saved_files": [
-    "20260106_Claude_Code_자동화.md",
-    "20250105_GPT_활용_가이드.md"
-  ],
+source": "albamon",
+  "collected_at": "2025-01-21T14:30:15",
+  "total_collected": 250,
+  "saved": 245,
+  "filtered_out": 5,
+  "saved_file": "docs/jobs/albamon_20260121.json",
+  "keywords_applied": ["원격", "단기"],
   "errors": []
 }
 ```
@@ -117,8 +118,14 @@ Claude Code를 활용하여 반복적인 업무를 자동화하는 방법에 대
 ```json
 {
   "status": "error",
+  "source": "albamon",
   "collected": 0,
   "saved": 0,
+  "saved_file": null,
+  "errors": [
+    {
+      "type": "connection",
+      "message": "Failed to connect to albamon.com
   "skipped": 0,
   "saved_files": [],
   "errors": [
@@ -144,14 +151,11 @@ Claude Code를 활용하여 반복적인 업무를 자동화하는 방법에 대
 
 #### 2. 페이지 로딩 타임아웃
 ```
-✗ Page load failed: Timeout waiting for element
+✗ Page l페이지 구조 변경
 ```
-**해결책**: 네트워크 연결을 확인하거나 잠시 후 다시 시도하세요.
-
-#### 3. 게시물 요소를 찾을 수 없음
+✗ Job element not found on page
 ```
-✗ no such element: Unable to locate element
-```
+**해결책**: 채용 사이트 페이지 구조가 변경되었을 수 있습니다. 선택자를 업데이트해야 
 **해결책**: 지피터스 페이지 구조가 변경되었을 수 있습니다. `references/selector-guide.md`를 참조하세요.
 
 #### 4. 한글 파일명 저장 오류 (Windows)
@@ -162,23 +166,22 @@ Claude Code를 활용하여 반복적인 업무를 자동화하는 방법에 대
 ## 워크플로우
 
 ### 1단계: 페이지 접속
-- Chrome 브라우저 시작
-- 프로필 URL로 이동
+- 채용 사이트 URL로 이동
 - JavaScript 렌더링 완료 대기 (5초)
 
-### 2단계: 게시물 파싱
-- 동적으로 로드된 게시물 목록 대기 (최대 15초)
+### 2단계: 공고 파싱
+- 동적으로 로드된 구인 공고 대기 (최대 15초)
 - BeautifulSoup으로 HTML 파싱
-- 제목, URL, 작성일, 요약 추출
+- 제목, 회사명, 급여, 위치, 근무형태 추출
 
-### 3단계: Markdown 저장
-- `docs/notes/gpters_editor_soyeon/` 디렉토리 생성
-- 파일명: `YYYYMMDD_title.md` 형식
-- 중복 파일 자동 건너뜀 (--no-skip으로 덮어쓰기 가능)
+### 3단계: JSON 저장
+- `docs/jobs/` 디렉토리 생성
+- 파일명: `{source}_{YYYYMMDD}.json` 형식
 - UTF-8 인코딩으로 한글 정상 저장
 
 ### 4단계: 결과 출력
 - JSON 형식으로 결과 출력
+- 수집된 공고 수 및 필터링 통계과 출력
 - 저장 파일 목록 출력
 
 ---
@@ -189,31 +192,28 @@ Claude Code를 활용하여 반복적인 업무를 자동화하는 방법에 대
 
 사용자가 다음 중 하나를 언급하면 자동으로 이 Skill을 실행합니다:
 
-- "지피터스 게시물 수집"
-- "gpters 스크랩"
-- "editor_소연님 게시물"
-- "프로필 크롤링"
-- "지피터스에서 글 가져오기"
+- "구인 공고 수집"
+- "채용 정보 담기"
+- "일자리 검색"
+- "채용 공고 크롤링"
+- "알바몬 공고 가져오기"
 
 ### 사용 예시
 
 **사용자**:
 ```
-editor_소연님의 지피터스 게시물 최근 15개 수집해줘
+원격근무 가능한 일자리 공고 50개 수집해줘
 ```
 
 **Claude Code 응답**:
 ```
-15개 게시물을 수집하여 12개 파일을 저장했습니다.
+알바몬에서 50개 공고를 수집하여 45개를 저장했습니다.
 
-저장 위치: docs/notes/gpters_editor_soyeon/
+저장 위치: docs/jobs/albamon_20260121.json
 
-신규 저장: 12개
-- 20260106_Claude_Code_자동화.md
-- 20250105_GPT_활용_가이드.md
-...
-
-건너뜬 중복: 3개
+총 수집: 50개
+저장: 45개 (원격근무 가능)
+필터 제외: 5개 (원격 불가능)
 ```
 
 ---
@@ -223,32 +223,43 @@ editor_소연님의 지피터스 게시물 최근 15개 수집해줘
 상세 문서: [references/selector-guide.md](references/selector-guide.md)
 
 ### 수집 데이터
+### 수집 데이터
 
-각 게시물에서 추출되는 정보:
+각 구인 공고에서 추출되는 정보:
 
-- **title** (string): 게시물 제목
-- **url** (string): 게시물 링크 (절대 URL)
-- **published_date** (string): 작성일 (YYYY-MM-DD 형식)
-- **summary** (string): 게시물 요약 또는 본문 일부 (최대 200자)
-
----
-
+- **title** (string): 공고 제목
+- **company** (string): 회사명
+- **url** (string): 공고 링크 (절대 URL)
+- **salary** (string): 급여 정보
+- **location** (string): 근무 위치
+- **work_type** (string): 근무 형태 (단기, 장기, 프로젝트 등)
+- **remote_available** (boolean): 원격근무 가능 여부
+- **flexible_hours** (boolean): 유연 근무시간 여부
 ## 고급 사용법
 
 ### 여러 프로필 수집
+플랫폼 수집
 
 ```bash
-# editor_소연
-python scripts/scrape_posts.py --profile-url "https://www.gpters.org/member/WZlPiwwnpW" --max-results 20
+# 알바몬에서 수집
+python scripts/scrape_jobs.py --source "albamon" --max-pages 10
 
-# 다른 멤버
-python scripts/scrape_posts.py --profile-url "https://www.gpters.org/member/OTHER_ID" --output-dir "docs/notes/gpters_other/"
+# 사람인에서 수집
+python scripts/scrape_jobs.py --source "saramin" --max-pages 10
+
+# 모든 플랫폼에서 수집
+python scripts/scrape_jobs.py --source "all"
 ```
 
-### 배치 처리 (여러 프로필 순회)
+### 키워드 필터링으로 맞춤 공고 검색
 
-Python 스크립트 작성:
-```python
+```bash
+# 원격근무 가능 + 단기 공고
+python scripts/scrape_jobs.py --source "all" --keywords "원격,단기"
+
+# 유연한 근무시간 공고
+python scripts/scrape_jobs.py --source "albamon" --keywords "유연근무"
+```
 import subprocess
 import json
 
