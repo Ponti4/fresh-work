@@ -355,6 +355,9 @@ def crawl_job_list(driver, max_scroll=10, max_jobs=100):
                     full_url = f"{BASE_URL}{href}" if href.startswith('/') else href
                     # 쿼리 파라미터 제거
                     full_url = full_url.split('?')[0]
+                    # 목록 페이지 URL 제외 (상세 페이지는 /kr/jobs/제목-해시/ 형태)
+                    if full_url.rstrip('/').endswith('/kr/jobs'):
+                        continue
                     urls.add(full_url)
 
             # 최대 개수 도달 시 종료
@@ -579,6 +582,16 @@ def crawl_job_detail(driver, url, retry=3):
                 time_match = re.search(r'(\d{1,2}:\d{2})\s*[~\-]\s*(\d{1,2}:\d{2})', page_text)
                 if time_match:
                     work_hours = f"{time_match.group(1)}~{time_match.group(2)}"
+
+            # 상세내용 (HTML에서 추출)
+            if not job_description:
+                # "상세 내용" 다음에 나오는 텍스트 추출
+                desc_match = re.search(r'상세 내용(.+?)(?:지원자|관심|공유|신고|채팅)', page_text, re.DOTALL)
+                if desc_match:
+                    job_description = desc_match.group(1).strip()
+                    # 너무 길면 자르기
+                    if len(job_description) > 2000:
+                        job_description = job_description[:2000] + '...'
 
             # 협의 가능 여부
             negotiable = '협의' in page_text or '조정 가능' in page_text
